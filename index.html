@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>广州元点心理咨询有限公司 | 愈见心理咨询室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      /* 心理咨询行业配色：温暖 · 专业 · 亲和 */
+      --color-bg:        #fdfcf9;   /* 暖白底 */
+      --color-bg-alt:    #f5f0e8;   /* 暖米灰 */
+      --color-hero:      #f0ebe0;   /* Hero 主背景：柔和米色 */
+      --color-hero-warm: #e8dfd0;   /* Hero 辅助色 */
+      --color-primary:   #4a7c59;   /* 鼠尾草绿：专业、治愈 */
+      --color-primary-light: #6a9e78;
+      --color-primary-dark:  #3a6247;
+      --color-accent:   #c4956a;   /* 暖棕金 */
+      --color-accent-light: #d9b896;
+      --color-text:      #2c2420;
+      --color-text-muted: #7a6e66;
+      --color-text-light: #a89e96;
+      --color-border:    #e4ddd4;
+      --color-white:     #ffffff;
+      --font-serif: 'Noto Serif SC', serif;
+      --font-sans: 'Noto Sans SC', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--color-bg-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 2px; }
+
+    /* ===== PROGRESS BAR ===== */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      z-index: 9999; transition: width 0.1s linear;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 2rem;
+      transition: all 0.4s var(--ease-out);
+    }
+    nav.scrolled {
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif); font-size: 1.1rem; color: white;
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 600;
+      color: var(--color-text);
+    }
+    .nav-logo-sub {
+      font-size: 0.7rem; color: var(--color-text-muted); line-height: 1.2;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; color: var(--color-text-muted);
+      transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px; background: var(--color-primary);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform 0.3s var(--ease-out);
+    }
+    .nav-links a:hover { color: var(--color-primary); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-cta {
+      background: var(--color-primary); color: white !important;
+      padding: 0.5rem 1.25rem; border-radius: 100px;
+      font-size: 0.875rem !important;
+      transition: background 0.3s, transform 0.2s var(--ease-out) !important;
+    }
+    .nav-cta:hover { background: var(--color-primary-light) !important; transform: translateY(-1px) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span {
+      width: 22px; height: 2px; background: var(--color-text);
+      display: block; transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: rgba(250, 248, 245, 0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-serif); font-size: 1.5rem;
+      color: var(--color-text); padding: 0.5rem 0;
+      border-bottom: 1px solid var(--color-border); width: 220px; text-align: center;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--color-primary); }
+    .mobile-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      background: none; border: none; font-size: 1.5rem; cursor: pointer;
+      color: var(--color-text);
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100dvh;
+      background: var(--color-hero);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+    /* 右上角装饰圆 */
+    .hero-bg-decor {
+      position: absolute; top: -15%; right: -10%;
+      width: min(700px, 60vw); height: min(700px, 60vw);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,124,89,0.12) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    /* 左下角装饰圆 */
+    .hero-bg-decor-2 {
+      position: absolute; bottom: -20%; left: -10%;
+      width: min(500px, 45vw); height: min(500px, 45vw);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,149,106,0.1) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    /* 装饰横线 */
+    .hero-bg-lines {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 85% 15%, rgba(74,124,89,0.06) 0%, transparent 35%),
+        radial-gradient(circle at 10% 85%, rgba(196,149,106,0.06) 0%, transparent 30%);
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3rem 8rem 8rem;
+      position: relative; z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(74, 124, 89, 0.1); border: 1px solid rgba(74, 124, 89, 0.3);
+      padding: 0.3rem 1rem; border-radius: 100px;
+      font-size: 0.8rem; color: var(--color-primary);
+      margin-bottom: 2rem; width: fit-content;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-primary);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    .hero-title-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 300; color: var(--color-accent);
+      margin-bottom: 2rem; letter-spacing: 0.15em;
+    }
+    .hero-desc {
+      color: var(--color-text-muted); font-size: 1rem;
+      max-width: 480px; line-height: 1.8; margin-bottom: 2.5rem;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--color-primary); color: white;
+      padding: 0.8rem 2rem; border-radius: 100px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: all 0.3s var(--ease-out);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 2px solid transparent;
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(74, 124, 89, 0.35);
+    }
+    .btn-outline {
+      border: 1px solid var(--color-border); color: var(--color-text);
+      padding: 0.8rem 2rem; border-radius: 100px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: all 0.3s var(--ease-out);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.6);
+    }
+    .btn-outline:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: rgba(74,124,89,0.06);
+    }
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-visual {
+      width: min(420px, 90%);
+      aspect-ratio: 1;
+      position: relative;
+    }
+    .hero-circle-outer {
+      width: 100%; height: 100%; border-radius: 50%;
+      border: 1.5px solid rgba(74,124,89,0.2);
+      display: flex; align-items: center; justify-content: center;
+      animation: rotate-slow 30s linear infinite;
+    }
+    @keyframes rotate-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .hero-circle-inner {
+      width: 80%; height: 80%; border-radius: 50%;
+      border: 1.5px solid rgba(196,149,106,0.2);
+      display: flex; align-items: center; justify-content: center;
+      animation: rotate-slow 20s linear infinite reverse;
+    }
+    .hero-circle-core {
+      width: 65%; height: 65%; border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%,
+        rgba(74,124,89,0.2), rgba(240,235,224,0.9));
+      border: 1px solid rgba(74,124,89,0.25);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .hero-char {
+      font-family: var(--font-serif); font-size: 3.5rem; font-weight: 700;
+      color: var(--color-primary); line-height: 1;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .hero-char-sub {
+      font-family: var(--font-serif); font-size: 1rem;
+      color: var(--color-accent); letter-spacing: 0.3em;
+    }
+    /* Orbit dots */
+    .orbit-dot {
+      position: absolute; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--color-accent);
+      animation: orbit 8s linear infinite;
+    }
+    .orbit-dot:nth-child(2) { animation-delay: -2.67s; background: var(--color-primary-light); }
+    .orbit-dot:nth-child(3) { animation-delay: -5.33s; background: rgba(74,124,89,0.5); }
+    @keyframes orbit {
+      from {
+        transform: rotate(0deg) translateX(210px) rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg) translateX(210px) rotate(-360deg);
+      }
+    }
+    .hero-scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+      z-index: 10; color: var(--color-text-light); font-size: 0.75rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--color-text-light), transparent);
+      animation: scroll-line 1.5s ease-in-out infinite;
+    }
+    @keyframes scroll-line {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.5); opacity: 0.5; }
+    }
+
+    /* ===== SECTION COMMONS ===== */
+    section { overflow: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--color-primary); font-weight: 500; margin-bottom: 1.25rem;
+    }
+    .section-label::before {
+      content: ''; width: 24px; height: 1px; background: var(--color-primary);
+    }
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600; line-height: 1.2;
+      color: var(--color-text);
+    }
+    .section-subheading {
+      font-size: 1rem; color: var(--color-text-muted);
+      max-width: 560px; line-height: 1.8; margin-top: 1rem;
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== INTRO STRIP ===== */
+    #intro-strip {
+      background: var(--color-primary-dark);
+      padding: 1.25rem 0; overflow: hidden;
+    }
+    .strip-track {
+      display: flex; gap: 3rem; width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .strip-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: rgba(255,255,255,0.85); font-size: 0.875rem;
+      white-space: nowrap;
+    }
+    .strip-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--color-accent-light); }
+
+    /* ===== ABOUT ===== */
+    #about { padding: 7rem 0; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card-main {
+      background: var(--color-white); border-radius: 2rem;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    }
+    .about-card-main::before {
+      content: '愈'; position: absolute; right: -10px; top: -20px;
+      font-family: var(--font-serif); font-size: 8rem; font-weight: 700;
+      color: rgba(74,124,89,0.06); line-height: 1; pointer-events: none;
+    }
+    .about-card-stat {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: var(--font-serif); font-size: 2.5rem; font-weight: 700;
+      color: var(--color-primary); line-height: 1; display: block;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.25rem; }
+    .about-tag-cloud {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;
+    }
+    .about-tag {
+      background: rgba(74,124,89,0.1); border: 1px solid rgba(74,124,89,0.25);
+      color: var(--color-primary); padding: 0.35rem 0.9rem;
+      border-radius: 100px; font-size: 0.8rem;
+    }
+    .about-card-float {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--color-primary); border-radius: 1.25rem;
+      padding: 1.25rem 1.5rem; box-shadow: 0 20px 40px rgba(74,124,89,0.25);
+    }
+    .about-card-float strong { font-family: var(--font-serif); font-size: 1.1rem; color: white; display: block; }
+    .about-card-float span { font-size: 0.75rem; color: rgba(255,255,255,0.75); }
+    .about-content .section-heading { margin-bottom: 1.5rem; }
+    .about-feature-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-feature {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.25rem; border-radius: 1rem;
+      border: 1px solid var(--color-border);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-out);
+    }
+    .about-feature:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 20px rgba(74,124,89,0.1);
+      transform: translateX(4px);
+    }
+    .feature-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: rgba(74,124,89,0.1); border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .feature-text strong { font-size: 0.95rem; color: var(--color-text); display: block; margin-bottom: 0.25rem; }
+    .feature-text p { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; }
+
+    /* ===== MISSION ===== */
+    #mission {
+      padding: 7rem 0;
+      background: var(--color-bg-alt);
+    }
+    .mission-header { text-align: center; max-width: 700px; margin: 0 auto 5rem; }
+    .mission-header .section-label { justify-content: center; }
+    .mission-header .section-label::before { display: none; }
+    .mission-header .section-label::after { content: ''; width: 24px; height: 1px; background: var(--color-primary); }
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .mission-card {
+      background: var(--color-white); border-radius: 1.5rem;
+      padding: 2rem; border: 1px solid var(--color-border);
+      transition: all 0.4s var(--ease-out);
+      position: relative; overflow: hidden;
+    }
+    .mission-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .mission-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(74,124,89,0.1); }
+    .mission-card:hover::before { transform: scaleX(1); }
+    .card-num {
+      font-family: var(--font-serif); font-size: 3rem; font-weight: 700;
+      color: var(--color-border); line-height: 1; margin-bottom: 1rem;
+    }
+    .card-title {
+      font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600;
+      color: var(--color-text); margin-bottom: 0.75rem;
+    }
+    .card-text { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7; }
+
+    /* ===== SERVICES ===== */
+    #services { padding: 7rem 0; }
+    .services-header { margin-bottom: 4rem; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
+    }
+    .service-item {
+      background: var(--color-bg-alt); border-radius: 1.5rem;
+      padding: 2.5rem; border: 1px solid transparent;
+      transition: all 0.4s var(--ease-out); cursor: default;
+      position: relative; overflow: hidden;
+    }
+    .service-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(74,124,89,0.05), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .service-item:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 10px 40px rgba(74,124,89,0.12);
+      transform: translateY(-4px);
+    }
+    .service-item:hover::after { opacity: 1; }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: var(--color-primary); border-radius: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.5rem;
+      transition: transform 0.3s var(--ease-elastic);
+    }
+    .service-item:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
+    .service-title {
+      font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600;
+      color: var(--color-text); margin-bottom: 0.75rem;
+    }
+    .service-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .service-tag {
+      font-size: 0.75rem; color: var(--color-primary);
+      background: rgba(74,124,89,0.1); padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    /* ===== TEAM ===== */
+    #team {
+      padding: 7rem 0;
+      background: var(--color-bg-alt);
+      color: var(--color-text);
+    }
+    #team .section-label { color: var(--color-accent); }
+    #team .section-label::before { background: var(--color-accent); }
+    #team .section-heading { color: var(--color-text); }
+    #team .section-subheading { color: var(--color-text-muted); }
+    .team-layout {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;
+      margin-top: 4rem;
+    }
+    .team-intro-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 1.5rem; padding: 2rem;
+      position: sticky; top: 100px;
+    }
+    .team-intro-title {
+      font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-text);
+      margin-bottom: 1rem;
+    }
+    .team-intro-desc {
+      font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.8;
+    }
+    .team-divider {
+      width: 40px; height: 1px; background: var(--color-accent);
+      margin: 1.5rem 0;
+    }
+    .team-keyword {
+      display: inline-block; padding: 0.3rem 0.8rem;
+      background: rgba(196,149,106,0.12); border-radius: 100px;
+      color: var(--color-accent); font-size: 0.8rem;
+      margin: 0.2rem;
+    }
+    .team-members { display: flex; flex-direction: column; gap: 1.5rem; }
+    .member-card {
+      background: var(--color-white); border-radius: 1.25rem;
+      padding: 1.75rem; border: 1px solid var(--color-border);
+      transition: all 0.4s var(--ease-out);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .member-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 8px 30px rgba(74,124,89,0.12);
+      transform: translateX(6px);
+    }
+    .member-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .member-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif); font-size: 1.2rem; color: white; flex-shrink: 0;
+    }
+    .member-name {
+      font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-text); font-weight: 600;
+    }
+    .member-title { font-size: 0.8rem; color: var(--color-accent); margin-top: 0.15rem; }
+    .member-roles {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+    }
+    .member-role {
+      font-size: 0.75rem; padding: 0.25rem 0.75rem;
+      background: rgba(74,124,89,0.1); border-radius: 100px;
+      color: var(--color-primary);
+    }
+
+    /* ===== PROJECTS ===== */
+    #projects { padding: 7rem 0; background: var(--color-bg-alt); }
+    .projects-header { margin-bottom: 4rem; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .project-card {
+      background: var(--color-white); border-radius: 1.5rem;
+      overflow: hidden; border: 1px solid var(--color-border);
+      transition: all 0.4s var(--ease-out);
+    }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(74,124,89,0.12); }
+    .project-img-placeholder {
+      height: 180px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .project-img-placeholder::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.15), transparent 60%);
+    }
+    .project-body { padding: 1.5rem; }
+    .project-label {
+      font-size: 0.75rem; color: var(--color-primary); letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 500; margin-bottom: 0.5rem;
+    }
+    .project-title {
+      font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600;
+      color: var(--color-text); margin-bottom: 0.5rem; line-height: 1.4;
+    }
+    .project-desc { font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6; }
+    .project-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .project-impact {
+      font-size: 0.8rem; color: var(--color-primary); font-weight: 500;
+    }
+
+    /* ===== VALUES ===== */
+    #values { padding: 7rem 0; }
+    .values-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .values-heading { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; }
+    .values-heading em { font-style: normal; color: var(--color-primary); }
+    .values-desc { color: var(--color-text-muted); line-height: 1.8; margin-top: 1.5rem; }
+    .values-list { display: flex; flex-direction: column; gap: 1rem; }
+    .value-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--color-bg-alt); border-radius: 1rem;
+      border-left: 3px solid var(--color-primary);
+      transition: all 0.3s var(--ease-out);
+    }
+    .value-row:nth-child(2) { border-left-color: var(--color-accent); }
+    .value-row:nth-child(3) { border-left-color: var(--color-primary-light); }
+    .value-row:nth-child(4) { border-left-color: #8fa87e; }
+    .value-row:hover { transform: translateX(4px); }
+    .value-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .value-name { font-weight: 600; font-size: 0.95rem; color: var(--color-text); }
+    .value-desc { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.1rem; }
+
+    /* ===== CTA ===== */
+    #cta {
+      padding: 7rem 0;
+      background: var(--color-primary);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.1), transparent 60%);
+    }
+    .cta-content { position: relative; z-index: 2; }
+    .cta-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700; color: white;
+      max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.2;
+    }
+    .cta-subtext { color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 2.5rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 1.25rem; padding: 1.5rem; text-align: center;
+      transition: all 0.3s var(--ease-out);
+    }
+    .contact-card:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-4px);
+    }
+    .contact-card-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .contact-card-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem; }
+    .contact-card-value { font-size: 0.9rem; color: rgba(255,255,255,0.95); font-weight: 500; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #2c2420;
+      padding: 3rem 0 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-brand .nav-logo-text { color: white; font-size: 1.1rem; }
+    .footer-brand .nav-logo-sub { color: rgba(255,255,255,0.4); }
+    .footer-desc { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 1rem; max-width: 320px; }
+    .footer-col h4 {
+      font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col a { font-size: 0.85rem; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--color-primary-light); }
+    .footer-bottom {
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .team-layout { grid-template-columns: 1fr; }
+      .team-intro-card { position: static; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .hero-right { display: none; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .contact-cards { grid-template-columns: 1fr; }
+      .values-split { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+      .hero-scroll-hint { display: none; }
+      .orbit-dot { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.8rem; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+      .about-card-float { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">愈</div>
+      <div>
+        <div class="nav-logo-text">元点心理</div>
+        <div class="nav-logo-sub">广州元点心理咨询有限公司</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#services">服务介绍</a></li>
+      <li><a href="#team">核心团队</a></li>
+      <li><a href="#projects">项目经验</a></li>
+      <li><a href="#cta" class="nav-cta">联系我们</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="导航菜单">
+  <button class="mobile-close" id="mobile-close" aria-label="关闭菜单">&times;</button>
+  <a href="#about" class="mobile-link">关于我们</a>
+  <a href="#services" class="mobile-link">服务介绍</a>
+  <a href="#team" class="mobile-link">核心团队</a>
+  <a href="#projects" class="mobile-link">项目经验</a>
+  <a href="#cta" class="mobile-link">联系我们</a>
+</div>
+
+<!-- Hero -->
+<section id="hero" aria-label="首页横幅">
+  <div class="hero-bg-decor" aria-hidden="true"></div>
+  <div class="hero-bg-decor-2" aria-hidden="true"></div>
+  <div class="hero-bg-lines" aria-hidden="true"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      深耕南沙 · 守护心灵
+    </div>
+    <h1 class="hero-title">愈见</h1>
+    <p class="hero-title-sub">心理咨询室</p>
+    <p class="hero-desc">
+      广州元点心理咨询有限公司，以专业心理服务为核心，融合军地双拥精神，为社区居民、救援队员及特殊群体提供全方位的心理健康支持与守护。
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">
+        了解服务
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#team" class="btn-outline">认识团队</a>
+    </div>
+  </div>
+
+  <div class="hero-right" aria-hidden="true">
+    <div class="hero-visual">
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+      <div class="hero-circle-outer">
+        <div class="hero-circle-inner">
+          <div class="hero-circle-core">
+            <span class="hero-char">愈</span>
+            <span class="hero-char-sub">渐见·成长</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span class="scroll-line"></span>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Intro Strip -->
+<div id="intro-strip" aria-hidden="true">
+  <div class="strip-track">
+    <div class="strip-item"><span class="strip-dot"></span>专业心理咨询</div>
+    <div class="strip-item"><span class="strip-dot"></span>军地双拥服务</div>
+    <div class="strip-item"><span class="strip-dot"></span>应急心理援助</div>
+    <div class="strip-item"><span class="strip-dot"></span>社区心理健康</div>
+    <div class="strip-item"><span class="strip-dot"></span>危机干预</div>
+    <div class="strip-item"><span class="strip-dot"></span>红色文化宣讲</div>
+    <div class="strip-item"><span class="strip-dot"></span>退役军人服务</div>
+    <div class="strip-item"><span class="strip-dot"></span>心理健康教育</div>
+    <!-- duplicate for seamless loop -->
+    <div class="strip-item"><span class="strip-dot"></span>专业心理咨询</div>
+    <div class="strip-item"><span class="strip-dot"></span>军地双拥服务</div>
+    <div class="strip-item"><span class="strip-dot"></span>应急心理援助</div>
+    <div class="strip-item"><span class="strip-dot"></span>社区心理健康</div>
+    <div class="strip-item"><span class="strip-dot"></span>危机干预</div>
+    <div class="strip-item"><span class="strip-dot"></span>红色文化宣讲</div>
+    <div class="strip-item"><span class="strip-dot"></span>退役军人服务</div>
+    <div class="strip-item"><span class="strip-dot"></span>心理健康教育</div>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-card-main">
+          <div class="section-label" style="color: var(--color-accent);">
+            关于元点
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-text); margin-bottom: 1rem;">
+            南沙双拥第一社区的<br>心理守护者
+          </h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.8;">
+            我们深耕南沙，由心理咨询机构主理人、退役军人与应急救援专家、红色宣讲骨干多元力量共同组成，致力于推动基层治理创新、深化双拥工作。
+          </p>
+          <div class="about-card-stat">
+            <div class="stat-item">
+              <span class="stat-num">10+</span>
+              <div class="stat-label">年专业经验</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">800+</span>
+              <div class="stat-label">服务案例</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">3</span>
+              <div class="stat-label">核心服务领域</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">100%</span>
+              <div class="stat-label">专业认证覆盖</div>
+            </div>
+          </div>
+          <div class="about-tag-cloud">
+            <span class="about-tag">军地融合</span>
+            <span class="about-tag">平急结合</span>
+            <span class="about-tag">身心并重</span>
+          </div>
+        </div>
+        <div class="about-card-float" style="margin-top: 1.5rem; position: relative; right: 0; bottom: 0; display: inline-block;">
+          <strong>蒲州社区试点</strong>
+          <span>南沙区唯一"未来社区"</span>
+        </div>
+      </div>
+
+      <div class="about-content reveal">
+        <div class="section-label">我们的优势</div>
+        <h2 id="about-heading" class="section-heading">
+          多重身份<br>天然契合双拥建设
+        </h2>
+        <p class="section-subheading">
+          区别于普通商业运营方，我们拥有多重官方背书与社会身份，将充分发挥独特优势，全力服务社区居民与退役军人群体。
+        </p>
+
+        <div class="about-feature-list">
+          <div class="about-feature">
+            <div class="feature-icon">🧠</div>
+            <div class="feature-text">
+              <strong>专业心理服务支撑</strong>
+              <p>团队核心成员为心理咨询公司创始人，依托专业能力提供心理健康服务，构建社区"软安全"防线，守护居民心灵健康。</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">🛡️</div>
+            <div class="feature-text">
+              <strong>硬核安全保障能力</strong>
+              <p>成员身兼南沙红棉应急救援队副队长、救援队心理援助组组长、区武装部外聘教官数职，具备极强的应急响应与培训能力。</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">🤝</div>
+            <div class="feature-text">
+              <strong>志愿服务资源联动</strong>
+              <p>作为港湾街道红棉老兵志愿服务队队长，可充分调动退役军人志愿者资源，引导他们投身社区建设，以实际行动回馈社会。</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">🌟</div>
+            <div class="feature-text">
+              <strong>红色文化引领方向</strong>
+              <p>团队成员同时是广州市红色宣讲团成员，能积极开展红色文化宣讲，为社区发展注入强大精神动力，契合社会主流发展方向。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission -->
+<section id="mission" aria-labelledby="mission-heading">
+  <div class="container">
+    <div class="mission-header reveal">
+      <div class="section-label">我们的使命</div>
+      <h2 id="mission-heading" class="section-heading">心理咨询的意义</h2>
+      <p class="section-subheading" style="max-width: 600px; margin: 1rem auto 0;">
+        心理援助是物理生命救援的延伸，关注受助者的心理健康和生活质量，促进社会团结与心理健康重建。
+      </p>
+    </div>
+    <div class="cards-grid">
+      <div class="mission-card reveal">
+        <div class="card-num">01</div>
+        <div class="card-title">生命救援的延伸</div>
+        <p class="card-text">心理援助是物理生命救援的延伸，关注受灾者的心理健康和生活质量，将生命守护延伸至精神层面。</p>
+      </div>
+      <div class="mission-card reveal">
+        <div class="card-num">02</div>
+        <div class="card-title">社会支持的强化</div>
+        <p class="card-text">通过心理援助，加强社会对受灾群体的支持，促进社会团结，让每一个人感受到被关注与保护。</p>
+      </div>
+      <div class="mission-card reveal">
+        <div class="card-num">03</div>
+        <div class="card-title">心理健康重建</div>
+        <p class="card-text">通过积极预防、及时控制和减缓心理社会影响，促进灾后心理健康重建，帮助个体重拾生活信心。</p>
+      </div>
+      <div class="mission-card reveal">
+        <div class="card-num">04</div>
+        <div class="card-title">人文关怀体现</div>
+        <p class="card-text">体现对受灾群众和救援人员的人文关怀，强调人的全面发展，以温暖与专业守护每一颗心灵。</p>
+      </div>
+      <div class="mission-card reveal">
+        <div class="card-num">05</div>
+        <div class="card-title">心理健康教育</div>
+        <p class="card-text">提高公众对心理健康重要性的认识，普及心理健康知识，预防心理创伤，推动全民心理健康素养提升。</p>
+      </div>
+      <div class="mission-card reveal">
+        <div class="card-num">06</div>
+        <div class="card-title">社会稳定维护</div>
+        <p class="card-text">通过专业心理援助，维护社会稳定，保障公众心理健康，从心灵层面筑牢和谐社区的根基。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-label">服务介绍</div>
+      <h2 id="services-heading" class="section-heading">专业服务体系</h2>
+      <p class="section-subheading">以科学规律为依据，构建多维度、全覆盖的心理服务体系，为不同群体提供个性化专业支持。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-item reveal">
+        <div class="service-icon" aria-hidden="true">🫂</div>
+        <h3 class="service-title">个人心理咨询</h3>
+        <p class="service-desc">为个人提供专业的心理评估、心理咨询及心理治疗服务，涵盖焦虑、抑郁、应激障碍（PTSD）等各类心理问题的专业干预。</p>
+        <div class="service-tags">
+          <span class="service-tag">心理评估</span>
+          <span class="service-tag">PTSD干预</span>
+          <span class="service-tag">情绪疏导</span>
+          <span class="service-tag">危机干预</span>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon" aria-hidden="true">🏘️</div>
+        <h3 class="service-title">社区心理健康服务</h3>
+        <p class="service-desc">深入社区基层，提供心理健康教育、居民心理筛查、团体辅导等服务，构建社区心理支持网络，促进居民心理健康水平整体提升。</p>
+        <div class="service-tags">
+          <span class="service-tag">社区入驻</span>
+          <span class="service-tag">心理筛查</span>
+          <span class="service-tag">团体辅导</span>
+          <span class="service-tag">健康教育</span>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon" aria-hidden="true">🚨</div>
+        <h3 class="service-title">应急心理援助</h3>
+        <p class="service-desc">依托专业应急救援体系，在灾难、突发事件发生后第一时间提供心理危机干预，帮助受灾群众和救援人员缓解心理应激反应。</p>
+        <div class="service-tags">
+          <span class="service-tag">应急响应</span>
+          <span class="service-tag">灾难干预</span>
+          <span class="service-tag">心理急救</span>
+          <span class="service-tag">一线支援</span>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-icon" aria-hidden="true">🪖</div>
+        <h3 class="service-title">退役军人心理关怀</h3>
+        <p class="service-desc">专项服务退役军人群体，提供心理支持培训、评估与干预，协助退役军人实现心理适应与角色转换，守护英雄身心健康。</p>
+        <div class="service-tags">
+          <span class="service-tag">角色转换</span>
+          <span class="service-tag">心理适应</span>
+          <span class="service-tag">专项关怀</span>
+          <span class="service-tag">双拥服务</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section id="team" aria-labelledby="team-heading">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">核心团队</div>
+      <h2 id="team-heading" class="section-heading">多元力量·共同守护</h2>
+      <p class="section-subheading">
+        由心理咨询专家、退役军人、应急救援骨干和红色宣讲员组成的复合型团队，以多重社会身份深度融入南沙社区建设。
+      </p>
+    </div>
+
+    <div class="team-layout">
+      <div class="team-intro-card reveal">
+        <h3 class="team-intro-title">我们是谁</h3>
+        <div class="team-divider"></div>
+        <p class="team-intro-desc">
+          团队深耕南沙，由多方专业力量共同组成。我们不只是一支心理服务团队，更是社区安全、文化传承与人文关怀的综合守护者。
+        </p>
+        <div class="team-divider"></div>
+        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem;">核心能力标签</p>
+        <div>
+          <span class="team-keyword">心理咨询</span>
+          <span class="team-keyword">应急救援</span>
+          <span class="team-keyword">双拥服务</span>
+          <span class="team-keyword">红色宣讲</span>
+          <span class="team-keyword">志愿服务</span>
+          <span class="team-keyword">社区治理</span>
+        </div>
+      </div>
+
+      <div class="team-members">
+        <div class="member-card reveal">
+          <div class="member-header">
+            <div class="member-avatar" aria-hidden="true">心</div>
+            <div>
+              <div class="member-name">心理咨询师</div>
+              <div class="member-title">机构创始人 · 主理人</div>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.7;">
+            心理咨询公司核心成员，专业心理咨询师资质认证，深耕心理健康服务领域多年，可依托专业能力为社区提供全方位心理健康服务，构建"软安全"防线。
+          </p>
+          <div class="member-roles">
+            <span class="member-role">国家认证心理咨询师</span>
+            <span class="member-role">机构主理人</span>
+            <span class="member-role">专业督导</span>
+          </div>
+        </div>
+
+        <div class="member-card reveal">
+          <div class="member-header">
+            <div class="member-avatar" aria-hidden="true" style="background: linear-gradient(135deg, #5c6e9a, #c4956a);">军</div>
+            <div>
+              <div class="member-name">退役军人专家</div>
+              <div class="member-title">应急救援队副队长 · 区武装部外聘教官</div>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.7;">
+            身兼广州退役军人南沙红棉应急救援队副队长、救援队应急救护及心理援助组组长、区武装部外聘教官数职，具备极强的应急响应与培训能力，能为社区安全筑牢坚实屏障。
+          </p>
+          <div class="member-roles">
+            <span class="member-role">应急救援队副队长</span>
+            <span class="member-role">心理援助组组长</span>
+            <span class="member-role">区武装部外聘教官</span>
+          </div>
+        </div>
+
+        <div class="member-card reveal">
+          <div class="member-header">
+            <div class="member-avatar" aria-hidden="true" style="background: linear-gradient(135deg, #9a6b5c, #5c7a5a);">志</div>
+            <div>
+              <div class="member-name">志愿服务骨干</div>
+              <div class="member-title">红棉老兵志愿服务队队长</div>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.7;">
+            担任港湾街道红棉老兵志愿服务队队长，可充分调动退役军人志愿者资源，引导他们投身社区建设，以实际行动回馈社会，将军人精神融入社区发展。
+          </p>
+          <div class="member-roles">
+            <span class="member-role">志愿服务队队长</span>
+            <span class="member-role">退役军人代表</span>
+            <span class="member-role">社区治理骨干</span>
+          </div>
+        </div>
+
+        <div class="member-card reveal">
+          <div class="member-header">
+            <div class="member-avatar" aria-hidden="true" style="background: linear-gradient(135deg, #c4956a, #d97a5a);">宣</div>
+            <div>
+              <div class="member-name">红色宣讲员</div>
+              <div class="member-title">广州市红色宣讲团成员</div>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.7;">
+            广州市红色宣讲团成员，能积极开展红色文化宣讲，传递红色精神，为社区发展注入强大的精神动力，契合社会主流发展方向，塑造向上向善的社区文化氛围。
+          </p>
+          <div class="member-roles">
+            <span class="member-role">广州市红色宣讲团</span>
+            <span class="member-role">红色文化传播</span>
+            <span class="member-role">精神引领</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" aria-labelledby="projects-heading">
+  <div class="container">
+    <div class="projects-header reveal">
+      <div class="section-label">项目经验</div>
+      <h2 id="projects-heading" class="section-heading">以实践检验专业</h2>
+      <p class="section-subheading">深度参与重大应急心理援助项目，积累了丰富的实战经验，形成了标准化、专业化的服务体系。</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card reveal">
+        <div class="project-img-placeholder" aria-hidden="true">🌊</div>
+        <div class="project-body">
+          <div class="project-label">灾难心理援助</div>
+          <h3 class="project-title">汶川地震心理援助</h3>
+          <p class="project-desc">建立"一线两网三级"移动心理援助模式，投入心理卫生人员800余人，为特殊人群进行个性化心理干预，推动中国心理援助体系的建设与发展。</p>
+        </div>
+        <div class="project-footer">
+          <span class="project-impact">800+ 心理援助人员参与</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img-placeholder" aria-hidden="true" style="background: linear-gradient(135deg, #5c7a9a, #7a9e78);">🏥</div>
+        <div class="project-body">
+          <div class="project-label">社会公益服务</div>
+          <h3 class="project-title">心理援助进驻福利院</h3>
+          <p class="project-desc">通过跨专业合作，整合社区资源，为福利院儿童提供全面心理支持和干预，定期进行心理测量评估，开展主题讲座与科普小课堂。</p>
+        </div>
+        <div class="project-footer">
+          <span class="project-impact">持续跟踪 · 个性化服务</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img-placeholder" aria-hidden="true" style="background: linear-gradient(135deg, #7a5c9a, #c4956a);">🦠</div>
+        <div class="project-body">
+          <div class="project-label">公共卫生应急</div>
+          <h3 class="project-title">疫情期间心理援助</h3>
+          <p class="project-desc">发布专业心理援助指南，提供网络心理援助服务及在线培训督导，重点关注感染者、一线医务工作者等心理敏感脆弱群体，维护社会稳定。</p>
+        </div>
+        <div class="project-footer">
+          <span class="project-impact">多渠道 · 全覆盖</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section id="values" aria-labelledby="values-heading">
+  <div class="container">
+    <div class="values-split">
+      <div class="reveal">
+        <div class="section-label">核心理念</div>
+        <h2 id="values-heading" class="values-heading">
+          以<em>专业</em>为基<br>以<em>温暖</em>为魂
+        </h2>
+        <p class="values-desc">
+          我们相信，真正的心理援助不只是技术的应用，更是人与人之间真诚连接的体现。每一次咨询，都是一次心灵的相遇；每一次援助，都是对生命的尊重。
+        </p>
+        <div style="margin-top: 2rem;">
+          <a href="#cta" class="btn-primary" style="color: white; display: inline-flex; align-items: center; gap: 0.5rem;">
+            与我们同行
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="values-list reveal">
+        <div class="value-row">
+          <div class="value-icon" aria-hidden="true">🌱</div>
+          <div>
+            <div class="value-name">专业精进</div>
+            <div class="value-desc">持续深化专业能力，以循证实践为依据，提供最高水准的心理服务</div>
+          </div>
+        </div>
+        <div class="value-row">
+          <div class="value-icon" aria-hidden="true">💛</div>
+          <div>
+            <div class="value-name">温暖陪伴</div>
+            <div class="value-desc">以真诚与温暖陪伴每一位来访者，让每个人都感受到被看见、被理解</div>
+          </div>
+        </div>
+        <div class="value-row">
+          <div class="value-icon" aria-hidden="true">🛡️</div>
+          <div>
+            <div class="value-name">守护使命</div>
+            <div class="value-desc">以保护心灵健康为使命，为社区、为国家构建心理防线</div>
+          </div>
+        </div>
+        <div class="value-row">
+          <div class="value-icon" aria-hidden="true">🤝</div>
+          <div>
+            <div class="value-name">共生共荣</div>
+            <div class="value-desc">军地融合、平急结合，与社区共同成长，推动基层治理创新</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" aria-labelledby="cta-heading">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="cta-content">
+      <div class="section-label reveal" style="justify-content: center; color: var(--color-accent-light);">
+        <span>联系我们</span>
+      </div>
+      <h2 id="cta-heading" class="cta-heading reveal">
+        让我们守护您与<br>您身边的每一颗心灵
+      </h2>
+      <p class="cta-subtext reveal">
+        无论您是需要个人心理咨询、还是寻求社区心理服务合作，我们的专业团队随时准备为您提供帮助。
+      </p>
+      <div class="cta-actions reveal">
+        <a href="tel:+86-020-00000000" class="btn-primary">立即预约咨询</a>
+        <a href="#services" class="btn-outline">了解更多服务</a>
+      </div>
+
+      <div class="contact-cards">
+        <div class="contact-card reveal">
+          <div class="contact-card-icon" aria-hidden="true">📍</div>
+          <div class="contact-card-label">服务地区</div>
+          <div class="contact-card-value">广州市南沙区</div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-card-icon" aria-hidden="true">🏢</div>
+          <div class="contact-card-label">驻点社区</div>
+          <div class="contact-card-value">蒲州社区·上湾社区</div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-card-icon" aria-hidden="true">💬</div>
+          <div class="contact-card-label">咨询方式</div>
+          <div class="contact-card-value">线上 + 线下服务</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-mark">愈</div>
+          <div>
+            <div class="nav-logo-text">元点心理</div>
+            <div class="nav-logo-sub">广州元点心理咨询有限公司</div>
+          </div>
+        </div>
+        <p class="footer-desc">
+          深耕南沙，以专业心理服务为核心，融合军地双拥精神，打造"南沙双拥第一社区"心理守护品牌。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>快速导航</h4>
+        <ul>
+          <li><a href="#about">关于我们</a></li>
+          <li><a href="#mission">服务使命</a></li>
+          <li><a href="#services">服务介绍</a></li>
+          <li><a href="#team">核心团队</a></li>
+          <li><a href="#projects">项目经验</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>服务领域</h4>
+        <ul>
+          <li><a href="#services">个人心理咨询</a></li>
+          <li><a href="#services">社区心理健康</a></li>
+          <li><a href="#services">应急心理援助</a></li>
+          <li><a href="#services">退役军人关怀</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 广州元点心理咨询有限公司 · 愈见心理咨询室 · 保留所有权利</span>
+      <span class="footer-copy">守护心灵健康 · 共建和谐社区</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Progress Bar =====
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }, { passive: true });
+
+  // ===== Navbar scroll state =====
+  const navbar = document.getElementById('navbar');
+  const navObserver = new IntersectionObserver(
+    ([entry]) => {
+      navbar.classList.toggle('scrolled', !entry.isIntersecting);
+    },
+    { rootMargin: '-72px 0px 0px 0px' }
+  );
+  const heroSection = document.getElementById('hero');
+  if (heroSection) navObserver.observe(heroSection);
+
+  // ===== Mobile Menu =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileClose = document.getElementById('mobile-close');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMenu);
+  mobileClose.addEventListener('click', closeMenu);
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // ===== Scroll Reveal =====
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger delay for siblings
+          const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal'));
+          const index = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = `${Math.min(index * 80, 400)}ms`;
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // ===== Smooth anchor scrolling =====
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offsetTop = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
